@@ -1,0 +1,13 @@
+<nav class="bg-blue-500 text-white p-4">
+  <ul class="flex justify-center">
+      <li class="mr-6">
+          <%= link_to "Home", root_path, class: "hover:text-gray-300" %>
+      </li>
+      <li class="mr-6">
+          <%= link_to "Login", new_user_session_path, class: "hover:text-gray-300" %>
+      </li>
+      <li>
+          <%= link_to "Register", new_user_registration_path, class: "hover:text-gray-300" %>
+      </li>
+  </ul>
+</nav>
