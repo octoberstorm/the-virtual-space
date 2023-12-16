@@ -1,12 +1,45 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Content:</strong>
-    <%= post.content %>
-  </p>
+<div class="bg-white p-4 border rounded-lg">
+  <h2 class="text-lg font-semibold mb-2"><%= post.user.name %></h2>
 
-  <p>
-    <strong>Visibility:</strong>
-    <%= post.visibility %>
-  </p>
+  <div class="text-green-500">
+    <span class="text-slate-500 mb-4 text-xs">
+      <%= time_ago_in_words(post.created_at)%> ago :: <%= post.visibility %>
+    </span>
+  </div>
 
+  <!-- Post Content -->
+  <p class="text-gray-800 mb-4"><%=raw post.content %></p>
+
+  <!-- Likes and Comments -->
+  <div class="flex justify-between items-center text-gray-600">
+      <div>
+          <span class="mr-2" id="likes-count-<%= dom_id(post) %>">
+            <%= post.likes.count %> Likes
+          </span>
+
+          <span>5 Comments</span>
+      </div>
+
+        <!-- Like Button -->
+        <%= render partial: 'likes/like_button', format: "html", locals: { post: post } %>
+
+  </div>
+
+  <!-- Comment Form -->
+  <div class="mt-4">
+      <form class="flex items-center space-x-2">
+          <input type="text" placeholder="Write a comment..." class="w-full p-2 border rounded">
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Post</button>
+      </form>
+  </div>
+
+  <!-- Comments Section (if available) -->
+  <div class="mt-4 space-y-2">
+      <!-- You can use a loop to generate comments dynamically -->
+      <div class="flex items-center">
+          <span class="font-semibold">John Doe:</span>
+          <p class="ml-2">Great post!</p>
+      </div>
+      <!-- Repeat the above structure for each comment -->
+  </div>
 </div>
