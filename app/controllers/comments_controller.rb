@@ -26,7 +26,6 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        puts "comment saved ===="
         @post = @comment.post
         format.turbo_stream { render "comments/create", locals: { comment: @comment, post: @comment.post } }
       else

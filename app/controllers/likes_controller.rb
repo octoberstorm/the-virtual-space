@@ -13,7 +13,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find(params[:id])
-    @post = @like.likable
+    @post = Post.find(@like.likable_id)
     @like.destroy
 
     respond_to do |format|

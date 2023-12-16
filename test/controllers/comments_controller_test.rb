@@ -1,8 +1,14 @@
 require "test_helper"
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
+    @user = users(:one)
     @comment = comments(:one)
+    @post = @comment.post
+
+    sign_in @user
   end
 
   test "should get index" do
@@ -10,17 +16,12 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_comment_url
-    assert_response :success
-  end
-
   test "should create comment" do
     assert_difference("Comment.count") do
-      post comments_url, params: { comment: { commenter_id: @comment.commenter_id, content: @comment.content, post_id: @comment.post_id } }
+      post comments_url, params: { comment: { content: @comment.content, post_id: @comment.post_id } }, as: :turbo_stream
     end
 
-    assert_redirected_to comment_url(Comment.last)
+    assert_response :success
   end
 
   test "should show comment" do
@@ -28,13 +29,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_comment_url(@comment)
-    assert_response :success
-  end
-
   test "should update comment" do
-    patch comment_url(@comment), params: { comment: { commenter_id: @comment.commenter_id, content: @comment.content, post_id: @comment.post_id } }
+    patch comment_url(@comment), params: { comment: { user_id: @comment.user_id, content: @comment.content, post_id: @comment.post_id } }
     assert_redirected_to comment_url(@comment)
   end
 

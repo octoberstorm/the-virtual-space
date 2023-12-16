@@ -2,19 +2,25 @@
   <h2 class="text-lg font-semibold mb-4">People</h2>
   <div>
     <h2 class="text-lg font-semibold mb-4">Online users</h2>
-    <% @online_users.each do |user| %>
-      <div class="flex items-center mb-2">
-        <div class="h-4 w-4 bg-green-500 rounded-full mr-2"></div>
-        <p><%= user.name %></p>
-      </div>
+    <% if @online_users.blank? %>
+      <p class="text-gray-500">No online users</p>
+    <% else %>
+      <% @online_users.each do |user| %>
+        <div class="flex items-center mb-2">
+          <div class="h-4 w-4 bg-green-500 rounded-full mr-2"></div>
+          <p><%= user.name %></p>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
   <h2 class="text-lg font-semibold mb-4">Offline users</h2>
-    <% @offline_users.each do |user| %>
-      <div class="flex items-center mb-2">
-        <div class="h-4 w-4 bg-gray-500 rounded-full mr-2"></div>
-        <p><%= user.name %></p>
-      </div>
+    <% if !@offline_users.blank? %>
+      <% @offline_users.each do |user| %>
+        <div class="flex items-center mb-2">
+          <div class="h-4 w-4 bg-gray-500 rounded-full mr-2"></div>
+          <p><%= user.name %></p>
+        </div>
+      <% end %>
     <% end %>
 </div>
