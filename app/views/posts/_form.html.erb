@@ -3,3 +3,18 @@
     <%= form.select :visibility, options_for_select(["Public", "Private", "Friends"]), class: "w-full p-2 border rounded" %>
     <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Post</button>
 <% end %>
+
+<script>
+    $('#post_content').summernote({
+        placeholder: "What's on your mind?",
+        toolbar: [
+        // [groupName, [list of button]]
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol']],
+        ['insert', ['link', 'picture', 'video']],
+      ]
+      });
+</script>
