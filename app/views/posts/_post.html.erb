@@ -17,7 +17,10 @@
             <%= post.likes.count %> Likes
           </span>
 
-          <span>5 Comments</span>
+          <!-- Comments Count -->
+          <span>
+            <%= post.comments.count %> Comments
+          </span>
       </div>
 
         <!-- Like Button -->
@@ -26,20 +29,15 @@
   </div>
 
   <!-- Comment Form -->
-  <div class="mt-4">
-      <form class="flex items-center space-x-2">
-          <input type="text" placeholder="Write a comment..." class="w-full p-2 border rounded">
-          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Post</button>
-      </form>
+  <div id="comment-form-<%= dom_id(post) %>">
+    <%= render partial: 'comments/form', format: "html", locals: { post: post } %>
   </div>
 
   <!-- Comments Section (if available) -->
-  <div class="mt-4 space-y-2">
-      <!-- You can use a loop to generate comments dynamically -->
-      <div class="flex items-center">
-          <span class="font-semibold">John Doe:</span>
-          <p class="ml-2">Great post!</p>
-      </div>
-      <!-- Repeat the above structure for each comment -->
+  <div class="mt-4 space-y-2" id="comments-<%= dom_id(post) %>">
+    <% post.comments.each do |comment| %>
+      <%= render partial: 'comments/comment', format: "html", locals: { comment: comment } %>
+    <% end %>
   </div>
 </div>
+

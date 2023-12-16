@@ -1,0 +1,10 @@
+<div class="mt-4">
+  <%= form_with(model: Comment, class: "flex items-center space-x-2", data: { remote: true }) do |form| %>
+      <%= form.hidden_field :post_id, value: post.id %>
+      <%= form.text_field :content, disabled: !user_signed_in?,
+        placeholder: user_signed_in? ? "Write a comment..." : "Sign in to comment",
+        class: "w-full p-2 border rounded" %>
+      <%= form.button "Post", class: "bg-blue-500 text-white px-4 py-2 rounded", disabled: !user_signed_in? %>
+  <% end %>
+</div>
+

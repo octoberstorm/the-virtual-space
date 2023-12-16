@@ -1,0 +1,12 @@
+<%= turbo_stream.append "comments-#{dom_id(@post)}" do %>
+  <%= render partial: 'comments/comment', locals: { comment: @comment, post: @post } %>
+<% end %>
+
+<%= turbo_stream.replace "comment_form-#{dom_id(@post)}" do %>
+  <%= render partial: "comments/form", locals: { post: @post }  %>
+<% end %>
+
+<!-- clear comment form -->
+<%= turbo_stream.update "comment-form-#{dom_id(@post)}" do %>
+  <%= render partial: "comments/form", format: "html", locals: { post: @post }  %>
+<% end %>
