@@ -1,28 +1,32 @@
 <div class="space-y-6">
   <!-- Repeat the following structure for each post -->
   <!-- You can use a loop to generate posts dynamically -->
+  <% @posts.each do |post| %>
   <div class="bg-white p-4 border rounded-lg">
-      <h2 class="text-lg font-semibold mb-2">Post Title</h2>
+      <h2 class="text-lg font-semibold mb-2"><%= post.user.name %></h2>
 
       <div class="text-green-500">
-        <span class="text-slate-500 mb-4 text-xs	">35 minutes ago::Public</span>
+        <span class="text-slate-500 mb-4 text-xs">35 minutes ago::Public</span>
       </div>
 
-      <!-- Post Image (if available) -->
-      <img src="https://placehold.co/600x400" alt="Post Image" class="mb-4 rounded-lg">
       <!-- Post Content -->
-      <p class="text-gray-800 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac justo nec urna auctor ultricies.</p>
+      <p class="text-gray-800 mb-4"><%= post.content %></p>
+
       <!-- Likes and Comments -->
       <div class="flex justify-between items-center text-gray-600">
           <div>
-              <span class="mr-2">10 Likes</span>
+              <span class="mr-2" id="likes-count-<%= dom_id(post) %>">
+                <%= post.likes.count %> Likes
+              </span>
+
               <span>5 Comments</span>
           </div>
-          <div>
-              <button class="text-blue-500">Like</button>
-              <button class="text-blue-500">Comment</button>
-          </div>
+
+            <!-- Like Button -->
+            <%= render partial: 'likes/like_button', format: "html", locals: { post: post } %>
+
       </div>
+
       <!-- Comment Form -->
       <div class="mt-4">
           <form class="flex items-center space-x-2">
@@ -30,6 +34,7 @@
               <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Post</button>
           </form>
       </div>
+
       <!-- Comments Section (if available) -->
       <div class="mt-4 space-y-2">
           <!-- You can use a loop to generate comments dynamically -->
@@ -40,4 +45,6 @@
           <!-- Repeat the above structure for each comment -->
       </div>
   </div>
+  <% end %>
 </div>
+

@@ -1,0 +1,5 @@
+<turbo-stream action="replace" target="likes-count-<%= dom_id(@post) %>">
+  <template>
+    <%= render partial: 'posts/like_count', locals: { post: @post } %>
+  </template>
+</turbo-stream>

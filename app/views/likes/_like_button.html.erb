@@ -1,0 +1,6 @@
+<!-- Like Button -->
+<div id="likes-btn-<%= dom_id(post) %>">
+  <%= turbo_frame_tag dom_id(post) do %>
+      <%= render 'likes/like', post: post %>
+  <% end %>
+</div>

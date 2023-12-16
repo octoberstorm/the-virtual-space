@@ -1,0 +1,5 @@
+<% if current_user.likes?(post) %>
+  <%= button_to 'Unlike', post_like_path(post, post.likes.find_by(user_id: current_user.id)), method: :delete, remote: true, data: { turbo_frame: dom_id(post) }, class: 'btn btn-primary' %>
+<% else %>
+  <%= button_to 'Like', post_likes_path(post), method: :post, remote: true, data: { turbo_frame: dom_id(post) }, class: 'btn btn-primary' %>
+<% end %>

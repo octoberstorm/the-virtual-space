@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "likes-count-#{dom_id(@post)}" do %>
+  <%= render partial: 'posts/like_count', locals: { post: @post } %>
+<% end %>
+
+<%= turbo_stream.replace "likes-btn-#{dom_id(@post)}" do %>
+  <%= render partial: 'likes/like_button', format: "html", locals: { post: @post } %>
+<% end %>
