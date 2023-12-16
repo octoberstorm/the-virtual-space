@@ -26,9 +26,12 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
         # format.turbo_stream { render turbo_stream: turbo_stream.prepend("posts", partial: "posts/post", locals: { post: @post }) }
+
+        broadcast_to_all_clients
         format.turbo_stream { render "posts/create" }
       else
         puts @post.errors.inspect
@@ -70,5 +73,24 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:content, :visibility)
+    end
+
+    def broadcast_to_all_clients
+      post = render_to_string(partial: "posts/post", locals: { post: @post })
+      data = {
+        op: "post_created",
+        post: {
+          id: @post.id,
+          content: @post.content,
+          visibility: @post.visibility,
+          created_at: @post.created_at,
+          author: {
+            id: @post.user.id,
+            name: @post.user.name,
+          }
+        }
+      }
+
+      ActionCable.server.broadcast("global_updates", data)
     end
 end
