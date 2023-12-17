@@ -70,3 +70,8 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+# searching
+gem "searchkick"
+gem "opensearch-ruby"
+
