@@ -1,24 +1,79 @@
-# README
+# The Virtual Space social network
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Current features
+- User: sign-up, sign-in, logout
+- Logged in user: create post, like, comment
+- Non Logged-in user: view posts
+- Search: search for post content using searchkiq
+- Real-time update: when a new post, comment, or like created, all the users  will be notified and update the view accordingly (using ActionCable)
+- Upload file with default ActiveStorage setting
 
-Things you may want to cover:
+## Pending features
+- Update/delete posts
+- Update/delete comments
+- Like/Unlike a comment
+- Friends
+- Apply post visibilty scope (public, private, friends...)
+- Chat box between friends
 
-* Ruby version
+## Technical
 
-* System dependencies
+- Rails 7 with default sqlite database setting
+- Devise (default config with some custom view files)
+- ActionCable via Redis
+- Searchkiq with Elasticsearch
+- Summernote editor (embed directly instead of using gem) with upload image feature (basic ActiveStorage)
+- jQuery, Bootstrap, Tailwind css
+- Basic tests
 
-* Configuration
+## Setup
 
-* Database creation
+1. Start redis and elasticsearch services
+   ```bash
+   docker-compose up -d
+   ```
 
-* Database initialization
+2. Compile JS
+  ```bash
+  yarn install
+  yarn build
+  ```
 
-* How to run the test suite
+3. Install gems
+   ```bash
+   bundle install
+   ```
+4. Setup db and seed sample data
+   ```bash
+   rails db:migrate db:seed
+   ```
+5. Run rails server
+   ```bash
+   rails s
+   ```
+6. Go to the dashboard at http://localhost:3000
+7. Login to a sample account (created via db:seed) http://localhost:3000/users/sign_in
+   - user1:
+     - email: user1@example.com
+     - password: password1
+   - user2:
+     - email: user2@example.com
+     - password: password2
+8. Use app features
+   - Create new post
+   - Like a post
+   - Comment on a post
+   - Search for post content
+   - Real-time update with multiple logged in users in different browsers
 
-* Services (job queues, cache servers, search engines, etc.)
+## Sample screenshots
 
-* Deployment instructions
+Screenshot 1 (not logged-in)
 
-* ...
+![Screenshot 1](screenshots/screenshot1.png)
+
+Screenshot 2 (not logged-in)
+![Screenshot 2](screenshots/screenshot2.png)
+
+Screenshot 3 (logged-in)
+![Screenshot 3](screenshots/screenshot3.png)
