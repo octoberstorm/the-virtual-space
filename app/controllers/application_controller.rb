@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
   private
 
   def update_user_activity
-    current_user.touch(:last_request_at) if user_signed_in?
+    if !broadcasting_to_current_user?
+      current_user.touch(:last_request_at) if user_signed_in?
+    end
+  end
+
+  def broadcasting_to_current_user?
+    params[:from_broadcasting] == "true" && params[:broadcaster] == current_user.id.to_s
   end
 end

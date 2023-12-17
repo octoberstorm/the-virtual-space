@@ -2,5 +2,8 @@
   <div class="flex items-center">
       <span class="font-semibold"><%= comment.commenter.name %>:</span>
       <p class="ml-2"><%= comment.content %></p>
+      <!-- time -->
   </div>
+  <p class="ml-2 text-xs text-gray-500"><%= time_ago_in_words(comment.created_at) %> ago</p>
+
 </div>

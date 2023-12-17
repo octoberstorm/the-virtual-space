@@ -8,6 +8,16 @@ class CommentsController < ApplicationController
 
   # GET /comments/1 or /comments/1.json
   def show
+    if broadcasting_to_current_user?
+      return render plain: "", status: :no_content
+    end
+
+    @comment = Comment.find(params[:id])
+    @post = @comment.post
+
+    respond_to do |format|
+      format.turbo_stream { render "comments/show" }
+    end
   end
 
   # GET /comments/new
@@ -27,6 +37,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         @post = @comment.post
+        broadcast_to_all_clients
         format.turbo_stream { render "comments/create", locals: { comment: @comment, post: @comment.post } }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -67,5 +78,23 @@ class CommentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def comment_params
       params.require(:comment).permit(:content, :post_id, :commenter_id)
+    end
+
+    def broadcast_to_all_clients
+      data = {
+        op: "comment_created",
+        comment: {
+          id: @comment.id,
+          content: @comment.content,
+          created_at: @comment.created_at,
+          post_id: @comment.post.id,
+          author: {
+            id: @comment.commenter.id,
+            name: @comment.commenter.name,
+          }
+        }
+      }
+
+      ActionCable.server.broadcast("global_updates", data)
     end
 end

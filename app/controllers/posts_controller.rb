@@ -8,6 +8,13 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    if broadcasting_to_current_user?
+      return render plain: "", status: :no_content
+    end
+
+    respond_to do |format|
+      format.turbo_stream { render "posts/show" }
+    end
   end
 
   # GET /posts/new
@@ -76,7 +83,6 @@ class PostsController < ApplicationController
     end
 
     def broadcast_to_all_clients
-      post = render_to_string(partial: "posts/post", locals: { post: @post })
       data = {
         op: "post_created",
         post: {

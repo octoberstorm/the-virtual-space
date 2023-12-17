@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy], on: :member
   end
 
+  get "posts/:post_id/likes_count", to: "likes#update_likes_count", as: :update_likes_count
+
   # resources :comments do
   #   resources :likes, only: [:create, :destroy]
   # end

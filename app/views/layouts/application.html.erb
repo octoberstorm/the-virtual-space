@@ -49,6 +49,13 @@
 
       <!-- Right Column -->
       <div class="w-1/3 p-8">
+        <div class="popular-posts">
+          <h2 class="text-xl font-bold mb-4">Popular Posts</h2>
+          <% if @popular_posts %>
+            <%= render "posts/popular_posts" %>
+          <% end %>
+        </div>
+
         <%= render "layouts/sidebar_#{user_signed_in? ? 'user' : 'guest'}" %>
       </div>
     </div>

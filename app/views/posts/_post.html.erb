@@ -8,7 +8,9 @@
   </div>
 
   <!-- Post Content -->
-  <p class="text-gray-800 mb-4"><%=raw post.content %></p>
+  <div class="text-gray-800 mb-4 text-2xl">
+    <%=raw post.content %>
+  </div>
 
   <!-- Likes and Comments -->
   <div class="flex justify-between items-center text-gray-600">
@@ -18,26 +20,25 @@
           </span>
 
           <!-- Comments Count -->
-          <span>
+          <span id="comments-count-<%= dom_id(post) %>">
             <%= post.comments.count %> Comments
           </span>
       </div>
 
         <!-- Like Button -->
         <%= render partial: 'likes/like_button', format: "html", locals: { post: post } %>
+  </div>
 
+  <!-- Comments Section (if available) -->
+  <div class="mt-4 ml-4 space-y-2" id="comments-<%= dom_id(post) %>">
+    <% post.comments.each do |comment| %>
+      <%= render partial: 'comments/comment', format: "html", locals: { comment: comment } %>
+    <% end %>
   </div>
 
   <!-- Comment Form -->
   <div id="comment-form-<%= dom_id(post) %>">
     <%= render partial: 'comments/form', format: "html", locals: { post: post } %>
-  </div>
-
-  <!-- Comments Section (if available) -->
-  <div class="mt-4 space-y-2" id="comments-<%= dom_id(post) %>">
-    <% post.comments.each do |comment| %>
-      <%= render partial: 'comments/comment', format: "html", locals: { comment: comment } %>
-    <% end %>
   </div>
 </div>
 
