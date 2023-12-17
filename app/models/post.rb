@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :likes, as: :likable, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  has_many_attached :images
+
   searchkick
 
   class << self

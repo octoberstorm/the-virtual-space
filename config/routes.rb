@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get "posts/:post_id/likes_count", to: "likes#update_likes_count", as: :update_likes_count
 
+  post '/uploads/image', to: 'uploads#image'
+
   # resources :comments do
   #   resources :likes, only: [:create, :destroy]
   # end

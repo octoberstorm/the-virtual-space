@@ -17,6 +17,36 @@
         ['color', ['color']],
         ['para', ['ul', 'ol']],
         ['insert', ['link', 'picture', 'video']],
-      ]
+      ],
+      callbacks: {
+        onImageUpload: function(files) {
+          console.log('Image selected for upload:', files);
+          uploadImage(files);
+        }
+      }
       });
+
+      function uploadImage(files) {
+        console.log('uploadImage===')
+        var formData = new FormData();
+        formData.append('file', files[0]);
+        const csrfToken = $('meta[name=csrf-token]').attr('content');
+        formData.append('authenticity_token', csrfToken);
+
+        $.ajax({
+          url: '/uploads/image',
+          method: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(data) {
+            json = JSON.parse(data);
+            $('#post_content').summernote('editor.insertImage', json.url);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error uploading image: ' + textStatus);
+          }
+        });
+      }
+
 </script>

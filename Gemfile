@@ -76,3 +76,4 @@ gem "searchkick"
 gem "opensearch-ruby"
 
 gem "faker"
+

@@ -62,21 +62,5 @@
 
     <!-- chat box -->
     <%= render "layouts/chat_box" %>
-
-    <script type="text/javascript">
-      $(document).ready(function() {
-          $('#post_content').summernote({
-            toolbar: [
-            // [groupName, [list of button]]
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough']],
-            ['fontsize', ['fontsize']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol']],
-            ['insert', ['link', 'picture', 'video']],
-          ]
-          });
-      });
-    </script>
   </body>
 </html>
