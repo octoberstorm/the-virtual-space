@@ -75,3 +75,4 @@ gem "devise", "~> 4.9"
 gem "searchkick"
 gem "opensearch-ruby"
 
+gem "faker"

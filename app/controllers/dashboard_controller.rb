@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    if params[:search]
+    if params[:search].presence
       @search = params[:search]
       @posts = Post.search(params[:search])
     else

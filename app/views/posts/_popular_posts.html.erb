@@ -2,7 +2,7 @@
 <% @popular_posts.each do |post| %>
   <div class="post bg-white shadow-md rounded-lg p-4 mb-4">
     <div class="post-content">
-      <%=raw post.content.slice(0, 50) %>
+      <%=raw post.content.slice(0, 250) %>
     </div>
     <div class="post-footer flex justify-between items-center mt-2">
       <div class="post-author text-gray-600">
