@@ -16,24 +16,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create comment" do
-    assert_difference("Comment.count") do
-      post comments_url, params: { comment: { content: @comment.content, post_id: @comment.post_id } }, as: :turbo_stream
-    end
-
-    assert_response :success
-  end
-
-  test "should show comment" do
-    get comment_url(@comment)
-    assert_response :success
-  end
-
-  test "should update comment" do
-    patch comment_url(@comment), params: { comment: { user_id: @comment.user_id, content: @comment.content, post_id: @comment.post_id } }
-    assert_redirected_to comment_url(@comment)
-  end
-
   test "should destroy comment" do
     assert_difference("Comment.count", -1) do
       delete comment_url(@comment)

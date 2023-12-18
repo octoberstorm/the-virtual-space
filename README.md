@@ -7,14 +7,16 @@
 - Search: search for post content using searchkiq
 - Real-time update: when a new post, comment, or like created, all the users  will be notified and update the view accordingly (using ActionCable)
 - Upload file with default ActiveStorage setting
+- Simple admin functions
 
 ## Pending features
 - Update/delete posts
 - Update/delete comments
 - Like/Unlike a comment
 - Friends
-- Apply post visibilty scope (public, private, friends...)
+- Apply post visibility scope (public, private, friends...)
 - Chat box between friends
+- Complete admin functions
 
 ## Technical
 

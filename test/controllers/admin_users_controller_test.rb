@@ -1,38 +1,33 @@
 require "test_helper"
 
 class AdminUsersControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
+  def setup
+    @admin = admins(:one)
+    @admin_user = users(:admin)
+    @user = users(:one)
+
+    sign_in @admin_user
+  end
+
   test "should get index" do
-    get admin_users_index_url
+    get admin_users_url
     assert_response :success
   end
 
   test "should get show" do
-    get admin_users_show_url
+    get admin_user_url(@user)
     assert_response :success
   end
 
   test "should get new" do
-    get admin_users_new_url
-    assert_response :success
-  end
-
-  test "should get create" do
-    get admin_users_create_url
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get admin_users_edit_url
-    assert_response :success
-  end
-
-  test "should get update" do
-    get admin_users_update_url
+    get new_admin_user_url
     assert_response :success
   end
 
   test "should get destroy" do
-    get admin_users_destroy_url
-    assert_response :success
+    delete admin_user_url(@user)
+    assert_redirected_to admin_users_url
   end
 end
