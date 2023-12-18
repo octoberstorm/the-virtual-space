@@ -1,0 +1,33 @@
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-bold mb-4">Admin Posts</h2>
+
+  <table class="min-w-full border border-gray-300">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="border px-4 py-2">ID</th>
+        <th class="border px-4 py-2 max-w-[30%]">Content</th>
+        <th class="border px-4 py-2">User</th>
+        <th class="border px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td class="border px-4 py-2"><%= post.id %></td>
+          <td class="border px-4 py-2 max-w-[30%] overflow-hidden"><%= post.content %></td>
+          <td class="border px-4 py-2"><%= post.user.name %></td>
+          <td class="border px-4 py-2">
+            <%= link_to 'Show', admin_post_path(post), class: 'text-blue-500' %>
+            <%= link_to 'Edit', edit_admin_post_path(post), class: 'text-yellow-500 ml-2' %>
+            <%= link_to 'Delete', admin_post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-500 ml-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="mx-auto text-center my-4">
+    <%= will_paginate @posts %>
+  </div>
+
+</div>

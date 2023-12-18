@@ -1,0 +1,21 @@
+<!-- app/views/admin_users/edit.html.erb -->
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-bold mb-4">Edit Admin User</h2>
+
+  <%= form_with(model: @user, url: admin_user_path(@user), method: :patch, class: 'w-full max-w-lg') do |form| %>
+    <div class="mb-4">
+      <%= form.label :name, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+      <%= form.text_field :name, class: 'shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :email, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+      <%= form.email_field :email, class: 'shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= form.submit 'Update', class: 'bg-blue-500 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline' %>
+      <%= link_to 'Cancel', admin_user_path(@user), class: 'text-gray-500' %>
+    </div>
+  <% end %>
+</div>

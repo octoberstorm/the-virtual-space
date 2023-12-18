@@ -1,0 +1,21 @@
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-bold mb-4">User Details</h2>
+
+  <dl class="grid grid-cols-2 gap-4">
+    <dt class="text-gray-600 font-semibold">ID:</dt>
+    <dd class="text-gray-800"><%= @user.id %></dd>
+
+    <dt class="text-gray-600 font-semibold">Name:</dt>
+    <dd class="text-gray-800"><%= @user.name %></dd>
+
+    <dt class="text-gray-600 font-semibold">Email:</dt>
+    <dd class="text-gray-800"><%= @user.email %></dd>
+
+    <!-- Add other user attributes as needed -->
+
+    <dt class="text-gray-600 font-semibold">Created At:</dt>
+    <dd class="text-gray-800"><%= @user.created_at %></dd>
+  </dl>
+
+  <%= link_to 'Back', admin_users_path, class: 'bg-gray-300 text-gray-800 px-4 py-2 rounded mt-4' %>
+</div>

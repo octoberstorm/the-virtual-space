@@ -8,10 +8,6 @@ Rails.application.routes.draw do
 
   post '/uploads/image', to: 'uploads#image'
 
-  # resources :comments do
-  #   resources :likes, only: [:create, :destroy]
-  # end
-
   get 'dashboard', to: 'dashboard#index'
 
   devise_for :users
@@ -23,4 +19,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "dashboard#index"
+
+  # admin
+  namespace :admin do
+    resources :users
+    resources :posts
+    resources :comments
+  end
 end

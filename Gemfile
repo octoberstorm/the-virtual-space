@@ -77,3 +77,6 @@ gem "opensearch-ruby"
 
 gem "faker"
 
+
+gem 'will_paginate'
+

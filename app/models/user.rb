@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  has_one :admin
+
   scope :online, -> { where('last_request_at > ?', 15.minutes.ago) }
   scope :offline, -> { where('last_request_at <= ?', 15.minutes.ago) }
 

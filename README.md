@@ -22,6 +22,7 @@
 - Devise (default config with some custom view files)
 - ActionCable via Redis
 - Searchkiq with Elasticsearch
+- Pagination with will_paginate
 - Summernote editor (embed directly instead of using gem) with upload image feature (basic ActiveStorage)
 - jQuery, Bootstrap, Tailwind css
 - Basic tests
@@ -66,6 +67,11 @@
    - Search for post content
    - Real-time update with multiple logged in users in different browsers
 
+9. Login as admin user:
+    - email: admin@example.com
+    - password: admin123
+10. Manage users/posts/comments at admin screen http://localhost:3000/admin/users
+
 ## Sample screenshots
 
 Screenshot 1 (not logged-in)
@@ -77,3 +83,6 @@ Screenshot 2 (not logged-in)
 
 Screenshot 3 (logged-in)
 ![Screenshot 3](screenshots/screenshot3.png)
+
+Screenshot 4 (Admin users)
+![Screenshot 4](screenshots/admin-users.png)

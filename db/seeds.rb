@@ -18,10 +18,12 @@ Post.delete_all
 Comment.delete_all
 Like.delete_all
 
+
+
 # JSON data for users
 users_data = [
   { name: 'Joe Milton', email: 'user1@example.com', password: 'password1', password_confirmation: 'password1' },
-  { name: 'Jake Miller', email: 'user2@example.com', password: 'password2', password_confirmation: 'password2' }
+  { name: 'Jake Miller', email: 'user2@example.com', password: 'password2', password_confirmation: 'password2' },
 ]
 
 # JSON data for posts
@@ -57,6 +59,9 @@ comments_data = [
 users_data.each do |user|
   User.create!(user)
 end
+
+admin_user = User.create!(name: 'Admin', email: 'admin@example.com', password: 'admin123', password_confirmation: 'admin123')
+admin = Admin.create!(user: admin_user)
 
 # Seed Posts
 posts_data.each do |post|

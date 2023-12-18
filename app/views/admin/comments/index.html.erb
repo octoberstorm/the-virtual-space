@@ -1,0 +1,30 @@
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-bold mb-4">Admin Comments</h2>
+
+  <table class="min-w-full border border-gray-300">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="border px-4 py-2">ID</th>
+        <th class="border px-4 py-2">Content</th>
+        <th class="border px-4 py-2">User</th>
+        <th class="border px-4 py-2">Post</th>
+        <th class="border px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td class="border px-4 py-2"><%= comment.id %></td>
+          <td class="border max-w-[200px] px-4 py-2 overflow-hidden"><%= comment.content %></td>
+          <td class="border px-4 py-2"><%= comment.commenter.name %></td>
+          <td class="border px-4 py-2"><%= comment.post.content %></td>
+          <td class="border px-4 py-2">
+            <%= link_to 'Show', admin_comment_path(comment), class: 'text-blue-500' %>
+            <%= link_to 'Edit', edit_admin_comment_path(comment), class: 'text-yellow-500 ml-2' %>
+            <%= link_to 'Delete', admin_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-500 ml-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
